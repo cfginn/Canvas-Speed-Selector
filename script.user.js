@@ -35,7 +35,22 @@ document.getElementById ("myButton").addEventListener (
 function ButtonClickAction (zEvent) {
     let speed = document.getElementById("speeds");
     let value = speed.value
-    document.getElementsByTagName("iframe")[0].contentDocument.getElementsByTagName("video")[0].playbackRate = value
+
+    for (const iframe of document.getElementsByTagName("iframe")) {
+        try {
+            iframe.contentDocument.getElementsByTagName("video")[0].playbackRate = value
+        }
+        catch {
+        }
+    }
+
+    for (const video of document.getElementsByTagName("video")) {
+        try {
+            video.playbackRate = value
+        }
+        catch {
+        }
+    }
 }
 //--- Style our newly added elements using CSS.
 GM_addStyle ( `
